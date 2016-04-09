@@ -25,10 +25,14 @@ launch_listener()
   get_events "$DEVICE_NAME" "$EVENTPATTERN" handle_event
 }
 
+TS="$(date +%Y-%m-%d-%H%M%S)"
+LOGFILE="$PCKGDIR/log-$TS.txt"
+#LOGFILE='/dev/null'
 if [ -z "$1" ]; then
   # no argument, we got called from on boot-up probably
   # disable output, run in background
-  launch_listener > /dev/null &
+  launch_listener > "$LOGFILE" 2>&1 &
+  echo "launch_listener pid: '$!'"
 else
   # with argument, keep output enabled and in foreground
   launch_listener
