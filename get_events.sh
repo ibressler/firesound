@@ -34,7 +34,13 @@ get_eventfile()
 
 get_events()
 {
-  local FILE="$(get_eventfile "$1")"
+  local DEVNAME="$1"
+  local FILE="$(get_eventfile "$DEVNAME")"
+  while [ -z "$FILE" ]; do
+    sleep 3 # look for the device every 3secs
+    local FILE="$(get_eventfile "$DEVNAME")"
+  done
+  echo "Using event file: '$FILE'"
   [ ! -e "$FILE" ] && return
   local FILTER="$2"
   local HANDLER="$3"
