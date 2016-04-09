@@ -4,8 +4,8 @@
 
 launch_listener()
 {
-  source "$BASEDIR"/set_volume.sh
-  source "$BASEDIR"/get_events.sh
+  source "$PCKGDIR"/set_volume.sh
+  source "$PCKGDIR"/get_events.sh
 
   init_volume_control
   echo "Determined control values '$CONTROLS'"

@@ -41,6 +41,6 @@ handle_event()
 }
 
 # directory of this script (and where dependent scripts are expected)
-BASEDIR="${0%/*}"
-source "$BASEDIR"/launcher.sh
+PCKGDIR="${0%/*}"
+source "$PCKGDIR"/launcher.sh
 
