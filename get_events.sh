@@ -9,12 +9,18 @@
 # listens for output of the getevent command
 # for a given event device file in /dev/input
 
-STDBUF="/data/media/0/tools/stdbuf.so"
+STDBUF="$PCKGDIR/stdbuf.so"
+#STDBUF="/data/media/0/tools/firesound/stdbuf.so"
 DEVPATH='/dev/input'
 
 GETEVENT=getevent
 if ! $GETEVENT -p > /dev/null 2>&1; then
   echo "$GETEVENT was not found! aborting."
+  exit 1
+fi
+
+if [ ! -f "$STDBUF" ]; then
+  echo "Binary '$STDBUF' was not found! aborting."
   exit 1
 fi
 
