@@ -8,16 +8,15 @@
 
 # adjusts the volume at a button press event of the fire tv remote
 
-source set_volume.sh
-source get_events.sh
-
-init_volume_control
-echo "Determined control values '$CONTROLS'"
-
 VOL_UP_KEY="KEY_UP"
 VOL_DOWN_KEY="KEY_DOWN"
 MODIFIER_KEY="KEY_MENU"
-MODIFIER='' # holds the current state of the modifier key
+DEVICE_NAME="Fire TV Remote"
+EVENTPATTERN='KEY_.+[[:space:]]+(UP|DOWN)'
+
+# internal variable holds the current state of the modifier key
+MODIFIER=''
+
 handle_event()
 {
   # get the matched line for each event as argument
@@ -41,8 +40,7 @@ handle_event()
   esac
 }
 
-get_events "$(get_eventfile "Fire TV Remote")" \
-           'KEY_.+[[:space:]]+(UP|DOWN)' \
-           handle_event
+# directory of this script (and where dependent scripts are expected)
+BASEDIR="${0%/*}"
+source "$BASEDIR"/launcher.sh
 
-exit 0

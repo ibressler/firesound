@@ -57,7 +57,7 @@ function get_controls()
     echo "$CARD:$MIXERCTRL:$MIN:$MAX"
   done
   # another one for testing multiples
-  echo "2:6:1:49"
+  # echo "2:6:1:49"
 }
 
 function init_volume_control()
@@ -98,7 +98,8 @@ CMD="$0"
 if [ ! -z "$@" ]; then
   # there were arguments, do something actually
   # otherwise, got source'd elsewhere
-  init
+  init_volume_control
   set_volume $@
   exit 0
 fi
+

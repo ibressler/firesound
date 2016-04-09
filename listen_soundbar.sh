@@ -8,11 +8,8 @@
 
 # adjusts the volume at a wheel event of the Dell AC511 sound bar
 
-source set_volume.sh
-source get_events.sh
-
-init_volume_control
-echo "Determined control values '$CONTROLS'"
+DEVICE_NAME="SoundBar"
+EVENTPATTERN='KEY_.+[[:space:]]+DOWN'
 
 handle_event()
 {
@@ -25,8 +22,7 @@ handle_event()
   esac
 }
 
-get_events "$(get_eventfile "soundbar")" \
-           'KEY_.+[[:space:]]+DOWN' \
-           handle_event
+# directory of this script (and where dependent scripts are expected)
+BASEDIR="${0%/*}"
+source "$BASEDIR"/launcher.sh
 
-exit 0

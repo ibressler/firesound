@@ -28,7 +28,7 @@ get_eventfile()
 
 get_events()
 {
-  local FILE="$1"
+  local FILE="$(get_eventfile "$1")"
   [ ! -e "$FILE" ] && return
   local FILTER="$2"
   local HANDLER="$3"
@@ -38,3 +38,4 @@ get_events()
     "$HANDLER" "$event"
   done
 }
+
