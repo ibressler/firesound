@@ -4,6 +4,12 @@
 
 launch_listener()
 {
+  # check for package started in /data/media/* path
+  local PREFIX='/data/media'
+  if ! echo "$PCKGDIR" | grep -q "^$PREFIX/"; then
+    echo "Please start this script from within '$PREFIX/*'! aborting."
+    exit 1
+  fi
   source "$PCKGDIR"/set_volume.sh
   source "$PCKGDIR"/get_events.sh
 
