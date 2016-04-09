@@ -26,8 +26,10 @@ launch_listener()
 }
 
 TS="$(date +%Y-%m-%d-%H%M%S)"
-LOGFILE="$PCKGDIR/log/$TS.txt"
+LOGDIR="$PCKGDIR/log"
+LOGFILE="$LOGDIR/$TS.txt"
 #LOGFILE='/dev/null'
+mkdir -p "$LOGDIR" # make sure the log dir exists
 if [ -z "$1" ]; then
   # no argument, we got called from on boot-up probably
   # disable output, run in background
