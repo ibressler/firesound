@@ -63,6 +63,10 @@ get_controls()
 init_volume_control()
 {
   CONTROLS="$(get_controls)" # get available controls once
+  if [ -z "$CONTROLS" ]; then
+    echo "No useable volume controls found! aborting."
+    exit 1
+  fi
   adjust_volume = 20 # set initial volume to 20%
 }
 
