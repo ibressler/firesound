@@ -16,9 +16,10 @@ handle_event()
   # get the matched line for each event as argument
   local KEYEVENT="$1"
   local ACTION="$(echo "$KEYEVENT" | grep -oE 'VOLUME(UP|DOWN)')"
+  echo "  action: '$ACTION'"
   case "$ACTION" in
-    VOLUMEUP)   echo UP;   adjust_volume + 3;;
-    VOLUMEDOWN) echo DOWN; adjust_volume - 3;;
+    VOLUMEUP)   adjust_volume + 3;;
+    VOLUMEDOWN) adjust_volume - 3;;
   esac
 }
 

@@ -6,6 +6,7 @@ STARTUPDELAY=10
 
 launch_listener()
 {
+  echo "$0 PID: $(exec sh -c 'echo $PPID')"
   # check for package started in /data/media/* path
   local PREFIX='/data/media'
   if ! echo "$PCKGDIR" | grep -q "^$PREFIX/"; then

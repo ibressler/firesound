@@ -32,11 +32,12 @@ handle_event()
       MODIFIER=''
     fi
   fi
+  echo "  current MODIFIER: '$MODIFIER'"
   [ -z "$MODIFIER" ] && return # abort if modifier button is not pressed
   [ "$STATE" = "UP" ] && return # act only on button down press
   case "$KEY" in
-    "$VOL_UP_KEY")   echo UP;   adjust_volume + 3;;
-    "$VOL_DOWN_KEY") echo DOWN; adjust_volume - 3;;
+    "$VOL_UP_KEY")   echo ' -> increase'; adjust_volume + 3;;
+    "$VOL_DOWN_KEY") echo ' -> decrease'; adjust_volume - 3;;
   esac
 }
 
