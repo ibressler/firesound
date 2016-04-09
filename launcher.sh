@@ -32,3 +32,5 @@ else
   # with argument, keep output enabled and in foreground
   launch_listener
 fi
+
+# vim: set ts=2 sts=2 sw=2 tw=0:
