@@ -2,6 +2,8 @@
 # common startup code for each event listener,
 # finally called by 'source' command
 
+STARTUPDELAY=10
+
 launch_listener()
 {
   # check for package started in /data/media/* path
@@ -10,6 +12,9 @@ launch_listener()
     echo "Please start this script from within '$PREFIX/*'! aborting."
     exit 1
   fi
+  echo -n "Waiting ${STARTUPDELAY}sec to let devices settle ... "
+  sleep "$STARTUPDELAY"
+  echo "done."
   source "$PCKGDIR"/set_volume.sh
   source "$PCKGDIR"/get_events.sh
 
