@@ -4,21 +4,30 @@
 #
 # This file is part of the FireSound scripts,
 # licensed under the terms of the GPLv3.
-#
-# build script for stdbuf using the Android NDK tools
 
-ndkpath = ${HOME}/android/android-ndk-r11c
-toolarch = aarch64-linux-android
-toolchain = ${ndkpath}/toolchains/${toolarch}-*/prebuilt/*
-platform = ${ndkpath}/platforms/android-21/arch-arm64
+# build&package script
 
-CC = ${toolchain}/bin/${toolarch}-gcc
+SRC_DIR = src
+SCRIPT_DIR = scripts
+DOC_DIR = doc
+FILES = LICENSE README
 
-all: stdbuf.so
+PCKG_DIR = firesound
 
-stdbuf.so:
-	${CC} --sysroot=${platform} -O2 -Wall -x c -s -fPIC -shared -o stdbuf.so stdbuf.c
+.PHONY: binary
+
+all: binary
+
+binary:
+	$(MAKE) -C $(SRC_DIR)
+
+package: binary
+	mkdir -p $(PCKG_DIR)
+	cp $(SCRIPT_DIR)/*.sh $(PCKG_DIR)
+	cp $(SRC_DIR)/*.so $(PCKG_DIR)
+	cp $(FILES) $(PCKG_DIR)
+	cp -R $(DOC_DIR) $(PCKG_DIR)
 
 clean:
-	rm -f *.o *.i *.s *.so
+	$(MAKE) -C $(SRC_DIR) clean
 
