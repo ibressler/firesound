@@ -26,7 +26,7 @@ launch_listener()
 }
 
 TS="$(date +%Y-%m-%d-%H%M%S)"
-LOGFILE="$PCKGDIR/log-$TS.txt"
+LOGFILE="$PCKGDIR/log/$TS.txt"
 #LOGFILE='/dev/null'
 if [ -z "$1" ]; then
   # no argument, we got called from on boot-up probably
