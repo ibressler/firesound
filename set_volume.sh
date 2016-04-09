@@ -16,7 +16,7 @@ if ! $TINYMIX > /dev/null 2>&1; then
   exit 1
 fi
 
-function set_volume()
+set_volume()
 {
   local VALUE="$(echo "$1" | grep -oE '[0-9]+')"
   if echo "$1" | grep -q '^\+'; then
@@ -32,7 +32,7 @@ function set_volume()
   fi
 }
 
-function usage ()
+usage ()
 {
   echo "Please provide a percentage between 0 and 100 or a step up/down:"
   echo "USAGE: $CMD <volume percentage>"
@@ -41,7 +41,7 @@ function usage ()
   exit 1
 }
 
-function get_controls()
+get_controls()
 {
   # get all relevant cards instead, not only playback
   for CARD in $(cd /proc/asound; ls -d card* | grep -o '[0-9]'); do
@@ -60,12 +60,13 @@ function get_controls()
   # echo "2:6:1:49"
 }
 
-function init_volume_control()
+init_volume_control()
 {
   CONTROLS="$(get_controls)" # get available controls once
+  adjust_volume = 20 # set initial volume to 20%
 }
 
-function adjust_volume()
+adjust_volume()
 {
   local OP="$1"
   # given percentage by command line argument
