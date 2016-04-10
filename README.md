@@ -20,19 +20,7 @@ volume control, respectively mixing.
 [3]: https://en.wikipedia.org/wiki/Android_(operating_system)
 [4]: https://en.wikipedia.org/wiki/Fire_OS
 
-However, the underlying Android system is based on a minimal Linux which
-supports audio mixing via the [tinyALSA][5] tools. Specifically, on Android
-`tinymix` can be used for this purpose.
-[5]: https://github.com/tinyalsa/tinyalsa
-
 ## Description
-
-The script collection at hand uses the `tinymix` program to find an audio
-device which provides a playback volume mixer control.
-Additionally, it sets up a background process querying the `getevent` builtin
-command for user input events, for example from the Fire TV Remote or another
-USB device.
-This in turn, is used to control the playback volume.
 
 There is one script `listen_fireremote.sh` which listens for Fire TV Remote
 events. Button presses of *UP* or *DOWN* while holding the *MENU* button
@@ -44,6 +32,9 @@ Another script `listen_soundbar.sh` listens for wheel events of the
 Currently, volume control is supported for USB audio devices only.
 HDMI is not supported because the author does not have access to an HDMI
 receiver with audio support for testing.
+
+This volume control is carried out on a rather low level of the system and
+is expected to work everywhere, across all apps.
 
 [10]: http://accessories.dell.com/sna/productdetail.aspx?sku=318-2885
 
@@ -71,6 +62,22 @@ might fail elsewhere. Make sure to review the code before running it.
 **PIC1**
 
 **PIC2**
+
+## Implementation
+
+The underlying Android system is based on a minimal Linux which
+supports audio mixing via the [tinyALSA][5] tools.
+Specifically on Android, `tinymix` can be used for this purpose.
+[5]: https://github.com/tinyalsa/tinyalsa
+
+The script collection at hand uses the `tinymix` program to find an audio
+device which provides a linear playback volume mixer control.
+
+Additionally, it sets up a background process querying the `getevent` builtin
+command for certain user input events, for example from the Fire TV Remote or
+another USB device.
+This in turn, is used to control the initially determined playback volume via
+`tinymix`.
 
 ## Licensing
 
