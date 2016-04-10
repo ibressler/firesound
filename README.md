@@ -31,6 +31,19 @@ process which listens for input device events (e.g. from the Fire TV Remote or
 another USB device) using the `getevent` builtin command. This in turn, is used
 to control the audio volume.
 
+Volume control is supported for USB audio devices only. HDMI is not supported
+at the moment: the author does not have access to an HDMI receiver supporting
+audio for testing.
+
+For user input, there is one script `listen_fireremote.sh` listening for the
+Fire TV Remote for button presses of *UP* or *DOWN* while the *MENU* button
+is hold down.
+
+Another script `listen_soundbar.sh` listens for wheel events *VOLUMEUP* or
+*VOLUMEDOWN* of the [Dell AC511 SoundBar][10].
+
+[10]: http://accessories.dell.com/sna/productdetail.aspx?sku=318-2885
+
 ## Requirements
 
 * [a rooted Fire TV][20]
@@ -39,11 +52,26 @@ to control the audio volume.
 [20]: http://www.aftvnews.com/start
 [21]: https://play.google.com/store/apps/details?id=os.tools.scriptmanager
 
+## Disclaimer
+
+As usual, please be careful: these scripts run as root with nearly maximum
+privileges and thus might break your Fire TV! They work for the author but
+might fail elsewhere. Make sure to review the code before running them.
+
 ## Installation
+
+1. Get the latest release package **LINK**.
+2. Extract it to a path somewhere in `/data/media/0` on your Fire TV box.
+3. Set up one or both of the event listening scripts to be started at boot
+   time with superuser permissions as shown below:
+
+**PIC1**
+
+**PIC2**
 
 ## Licensing
 
-It's available under the terms of the GPLv3.
+This tool is available under the terms of the GPLv3.
 Please see the included *LICENSE* file for details.
 
 [//]: # ( vim: set ts=2 sts=2 sw=2 tw=0: )
