@@ -54,15 +54,17 @@ might fail elsewhere. Make sure to review the code before running it.
 
 ## Installation
 
-1. Get the latest release package **LINK**.
+1. Get the [latest release package][30].
 2. Extract it to a path somewhere in `/data/media/0` on your Fire TV box.
 3. Set up one or both of the event listening scripts to be started at boot
    time with superuser permissions as shown below:
+   (screenshots of a German Fire TV localization)
 
 ![listening Fire TV Remote set up][31]
 
 ![listening SoundBar wheel set up][32]
 
+[30]: https://github.com/ibressler/firesound/releases
 [31]: https://raw.githubusercontent.com/ibressler/firesound/master/doc/listen_fireremote_800.png
 [32]: https://raw.githubusercontent.com/ibressler/firesound/master/doc/listen_soundbar_800.png
 
