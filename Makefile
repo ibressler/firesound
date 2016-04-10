@@ -11,9 +11,11 @@ PROJECT_NAME = firesound
 SRC_DIR = src
 SCRIPT_DIR = scripts
 DOC_DIR = doc
-FILES = LICENSE README
+FILES = LICENSE README.md
 PCKG_DIR = $(PROJECT_NAME)
-VERSION = $(shell git show -s --format="%ci %h" HEAD | awk '{print $$1"_"$$4}')
+VERSION = $(shell git show -s --format="%ci %h %d" HEAD | \
+		awk '{ if(!$$7) print $$1"_"$$4; \
+			else print gensub(",$$", "", 1, $$7); }')
 PCKG_FN = "$(PROJECT_NAME)_$(VERSION).zip"
 
 .PHONY: binary
