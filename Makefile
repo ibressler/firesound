@@ -11,6 +11,7 @@ PROJECT_NAME = firesound
 SRC_DIR = src
 SCRIPT_DIR = scripts
 DOC_DIR = doc
+DOC_FILES = *_800.png
 FILES = LICENSE README.md
 PCKG_DIR = $(PROJECT_NAME)
 VERSION = $(shell git show -s --format="%ci %h %d" HEAD | \
@@ -33,7 +34,8 @@ package: binary
 	cp $(SCRIPT_DIR)/*.sh $(PCKG_DIR)
 	cp $(SRC_DIR)/*.so $(PCKG_DIR)
 	cp $(FILES) $(PCKG_DIR)
-	cp -R $(DOC_DIR) $(PCKG_DIR)
+	mkdir -p $(PCKG_DIR)/$(DOC_DIR)
+	cp $(DOC_DIR)/$(DOC_FILES) $(PCKG_DIR)/$(DOC_DIR)
 	zip -r -9 $(PCKG_FN) $(PCKG_DIR)
 	sha1sum -b $(PCKG_FN) > $(PCKG_FN).sha
 
