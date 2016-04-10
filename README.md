@@ -59,9 +59,12 @@ might fail elsewhere. Make sure to review the code before running it.
 3. Set up one or both of the event listening scripts to be started at boot
    time with superuser permissions as shown below:
 
-**PIC1**
+![listening Fire TV Remote set up][31]
 
-**PIC2**
+![listening SoundBar wheel set up][32]
+
+[31]: https://raw.githubusercontent.com/ibressler/firesound/master/doc/listen_fireremote_800.png
+[32]: https://raw.githubusercontent.com/ibressler/firesound/master/doc/listen_soundbar_800.png
 
 ## Implementation
 
