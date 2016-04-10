@@ -84,6 +84,11 @@ another USB device.
 This in turn, is used to control the initially determined playback volume via
 `tinymix`.
 
+Providing an arbitrary argument to the listener scripts `listen_fireremote.sh`
+or `listen_soundbar.sh` keeps them in the foreground and outputs debug
+information for each input event. Otherwise, during normal operation a log file
+is created in the `log` subdirectory of the scripts directory: `firesound/log`.
+
 ## Licensing
 
 This tool is available under the terms of the GPLv3.
